@@ -36,6 +36,7 @@ ScrollReveal({
   distance: "2rem",
   duration: 2000,
   delay: 120,
+  mobile: false,
 });
 
 ScrollReveal().reveal(".left-side", { origin: "left" });
