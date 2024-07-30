@@ -233,15 +233,14 @@
         
         <h2 class="heading top-side">Contact <span>Me</span></h2>
        
-        <form action="" name="contact">
+        <form action="" name="contact"  novalidate>
             <div class="input-group left-side">
                 <div class="input-box">
                     <input type="text" placeholder="Full Name" id="fullName" name="fullName" title="Please enter your full Name" required>
                     <input type="email" title="Please enter your valid email" placeholder="Email" id="email" name="email" required>
-                    
                 </div>
                 <div class="input-box">
-                    <input type="text" name="country_code" title="Please enter exactly 10 digits" pattern="[1-9]{1}[0-9]{9}" placeholder="Phone Number" maxlength="10" id="phone" name="phone" required>
+                    <input type="text" name="country_code" title="Please enter exactly 10 digits"  placeholder="Phone Number" maxlength="10" id="phone" name="phone" required>
                     <input type="text" placeholder="Subject" id="subject" name="subject" required >
                 </div>
             </div>

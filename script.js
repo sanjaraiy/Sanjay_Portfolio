@@ -113,6 +113,44 @@ function sendEmail() {
   });
 }
 
+function toastMessage(msg){
+  Toastify({
+    text: `${msg}`,
+    duration: 3000,
+    newWindow: true,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "center", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(45deg, #FF4E50, #F9322C)",
+      fontSize: "1.5rem",
+    },
+  }).showToast();
+}
+
+
+function validateName(){
+    const name = fullname_Input.value;
+
+    var namePattern = /^[a-zA-Z\s-]+$/;
+    if(namePattern.test(name)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function checkEmail() {
+  const email = email_Input.value;
+  let emailRegx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (email.match(emailRegx)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function checkPhone() {
   const phone = phone_Input.value;
   var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
@@ -123,54 +161,62 @@ function checkPhone() {
   }
 }
 
-function checkEmail() {
-  const email = email_Input.value;
-  let emailRegx =
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (email.match(emailRegx)) {
-    return true;
-  } else {
-    return false;
+function validateSubject(){
+  const subject = subject_Input.value;
+  if(!subject){
+     return false;
+  }else{
+     return true;
   }
 }
 
+function validateMessage(){
+  const message = message_Input.value;
+  if(!message){
+     return false;
+  }else{
+     return true;
+  }
+
+}
+
+
 document.querySelector("form").addEventListener("submit", (e) => {
   e.preventDefault();
+  
+
+  if(!validateName()){
+    const msg = "Please enter your valid full Name ";
+    toastMessage(msg);
+    return;
+  }
 
   if (!checkEmail()) {
-    Toastify({
-      text: "Please enter your valid email ",
-      duration: 3000,
-      newWindow: true,
-      close: true,
-      gravity: "top", // `top` or `bottom`
-      position: "center", // `left`, `center` or `right`
-      stopOnFocus: true, // Prevents dismissing of toast on hover
-      style: {
-        background: "linear-gradient(45deg, #FF4E50, #F9322C)",
-        fontSize: "1.5rem",
-      },
-      onClick: function () {}, // Callback after click
-    }).showToast();
+      const msg = "Please enter your valid email ";
+      toastMessage(msg);
+      return;
   }
 
   if (!checkPhone()) {
-    Toastify({
-      text: "Please enter your valid phone no. ",
-      duration: 3000,
-      newWindow: true,
-      close: true,
-      gravity: "top", // `top` or `bottom`
-      position: "center", // `left`, `center` or `right`
-      stopOnFocus: true, // Prevents dismissing of toast on hover
-      style: {
-        background: "linear-gradient(45deg, #FF4E50, #F9322C)",
-        fontSize: "1.5rem",
-      },
-    }).showToast();
+      const msg = "Please enter your valid phone no. ";
+      toastMessage(msg);
+      return;
+  }
+  
+  if(!validateSubject()){
+     const msg = "Please enter your subject ";
+     toastMessage(msg);
+     return;
+  }
+
+  if(!validateMessage()){
+     const msg = "Please enter your message ";
+     toastMessage(msg);
+     return;
   }
 
   if (checkPhone() && checkEmail()) {
+      
     sendEmail();
     return false;
   }
