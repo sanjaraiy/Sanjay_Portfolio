@@ -47,10 +47,9 @@ ScrollReveal().reveal(".bottom-side", { origin: "bottom" });
 //======================= Typed.js ===========================
 const typed = new Typed(".text-animation span", {
   strings: [
-    "Frontend Developer",
-    "Backend Developer",
-    "Mern Stack Developer",
-    "Software Developer",
+    "Software Engineer",
+    "Frontend Engineer",
+    "Backend Engineer",
   ],
   typeSpeed: 100,
   backSpeed: 100,
